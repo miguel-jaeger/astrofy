@@ -10,11 +10,11 @@ import image from "@astrojs/image";
 export default defineConfig({
   site: 'https://miguel-jaeger.github.io',
   base: '/astrofy',
-  integrations: [mdx(), sitemap(), tailwind(), image(
+ /* integrations: [mdx(), sitemap(), tailwind(), image(
     {
       serviceEntryPoint: '@astrojs/image/sharp',
       cacheDir: "./.cache/image",
       logLevel: 'debug',
     }
-  )]
+  )]*/
 });
