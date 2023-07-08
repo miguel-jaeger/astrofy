@@ -1,0 +1,86 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+
+const posts = (await getCollection("publicaciones")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const proyectos = (await getCollection("proyectos")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-12 mt-5">
+    <div class="text-5xl font-bold">MSc. Miguel Jaeger Rodriguez Lazo</div>
+    <!--<div class="text-3xl py-3 font-bold">Ingeniero en Ciencias Informáticas | Máster en Informática Aplicada</div>-->
+    <div class="py-2">
+      <p class="text-justify">
+        Ingeniero de software y Máster en Informática Aplicada con más de 15 años de experiencia en el diseño y desarrollo de soluciones basadas en tecnologías web. Autor publicado y conferencista. Ha simultaneado el magisterio con la producción de software en la Universidad de las Ciencias Informáticas en la Habana, Cuba. Durante la carrera y los años de trabajo ha desempeñado varios roles que les han permitido desarrollar habilidades para el liderazgo, guía, asesoramiento y supervisión técnica a proyectos. Considerando contar con excelentes habilidades de análisis, aprendizaje rápido, muy organizado, creativo,altamente motivado, persistente y responsable. Ha desarrollado habilidades para trabajar de manera independiente y como miembro de un equipo, de ahí que pueda manejar y adaptarme a los cambios. Como profesor universitario cuento con más de 15 años de experiencia en la impartición de asignaturas relacionadas con el perfil de informática tanto en pregrado como postgrado.</p>
+    </div> 
+  </div>
+
+  <div>
+    <div class="text-3xl w-full font-bold mb-2">Últimos proyectos{"</>"}</div>
+  </div>
+
+  <HorizontalCard
+    title="Demo Project 1"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+    badge="NEW"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Demo Project 2"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+  />
+  <div class="divider my-0"></div>
+  <HorizontalCard
+    title="Demo Project 3"
+    img="/post_img.webp"
+    desc="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    url="#"
+    badge="FOSS"
+  />
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Últimas publicaciones</div>
+  </div>
+
+  {
+    last_posts.map((proyectos) => (
+      <>
+        <HorizontalCard
+          title={proyectos.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/publicaciones/"}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+  <div>
+    <div class="text-3xl w-full font-bold mb-5 mt-10">Últimas publicaciones</div>
+  </div>
+
+  {
+    last_posts.map((post) => (
+      <>
+        <HorizontalCard
+          title={post.data.title}
+          img={post.data.heroImage}
+          desc={post.data.description}
+          url={"/publicaciones/"}
+          target="_self"
+          badge={post.data.badge}
+        />
+        <div class="divider my-0" />
+      </>
+    ))
+  }
+</BaseLayout>
