@@ -10,6 +10,7 @@ import image from "@astrojs/image";
 export default defineConfig({
   //site: 'https://astrofy-template.netlify.app',
   site: 'https://miguel-jaeger.github.io/',
+  base: '/',
   integrations: [mdx(), sitemap(), tailwind(), image(
     {
       serviceEntryPoint: '@astrojs/image/sharp',
